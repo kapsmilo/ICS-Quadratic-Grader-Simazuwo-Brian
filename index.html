@@ -4,40 +4,135 @@
   <meta charset="UTF-8">
   <title>Quadratic Solver & Grading System</title>
   <style>
-    body { font-family: Arial; margin: 30px; background: #3636c6; }
-    h2 { color: #333; }
-    section { background: rgb(166, 62, 145); padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 5px gray; }
-    label { display: block; margin-top: 8px; }
-    input { padding: 5px; width: 80px; background-color: rgb(205, 199, 199);}
-    button:hover { text-decoration: none; background-color:rgb(37, 88, 240);}
-    button { margin-top: 10px; padding: 6px 12px;  }
-    .result { margin-top: 10px; font-weight: bold; color: blue; }
-    .error { color: red; }
+    body { 
+        font-family: Arial; 
+        margin: 30px;
+         background: #000000;
+         
+         }
+    header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #59d144, #0b2109);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    h2 { 
+        color: #000000;
+     }
+    section {
+        background: rgb(34, 88, 16);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px; 
+        box-shadow: 0 0 5px gray;
+         }
+         
+    label { 
+        display: block; 
+        margin-top: 8px; 
+    }
+    input { 
+        padding: 5px; 
+        width: 80px; 
+        background-color: rgb(205, 199, 199);
+    }
+    button:hover { 
+        text-decoration: none; 
+        background-color:rgb(20, 255, 16);
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 6px 12px;  
+    }
+    .result { margin-top: 10px; 
+        font-weight: bold; 
+        color: rgb(20, 255, 16); 
+    }
+    .error { 
+        color: red; 
+    }
+    .grade-scale {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #31c12c;
+            border-radius: 5px;
+            font-size: 14px;
+            
+        }
+
+        .grade-scale h3 {
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .grade-scale ul {
+            list-style-type: none;
+            columns: 2;
+        }
+
+        .grade-scale li {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
   </style>
 </head>
 <body>
 
-  <h1>Quadratic Solver & Grading System</h1>
+  <header>
+        <h1>QUADRATIC EQUATION SOLVER & GRADE CONVERTER</h1>
+        <p>Solve quadratic equations and convert numeric scores to letter grades</p>
+    </header>
 
   <!-- Quadratic Solver -->
-  <section>
+<div class="container">
+  <section class="section">
     <h2>Quadratic Equation Solver</h2>
-    <label>a: <input type="number" id="a"></label>
-    <label>b: <input type="number" id="b"></label>
-    <label>c: <input type="number" id="c"></label>
+    <p>Enter the coefficients for the quadratic equation: ax² + bx + c = 0</p>
+    <label>Coefficient a: <input type="number" id="a"></label>
+    <label>Coefficient b: <input type="number" id="b"></label>
+    <label>Coefficient c: <input type="number" id="c"></label>
     <button onclick="solveQuadratic()">Solve</button>
     <button onclick="clearQuadratic()">Reset</button>
     <div id="quadResult" class="result"></div>
   </section>
 
   <!-- Grading System -->
-  <section>
+  <section class="section">
     <h2>Grading System</h2>
+     <p>Enter a numeric score (0-100) to convert to a letter grade</p>
     <label>Score (0–100): <input type="number" id="score"></label>
     <button onclick="computeGrade()">Compute</button>
     <button onclick="clearGrade()">Reset</button>
     <div id="gradeResult" class="result"></div>
+     <div class="grade-scale">
+                <h3>Grade Scale</h3>
+                <ul>
+                    <li><strong>A+:</strong> 85–100</li>
+                    <li><strong>A:</strong> 75–84</li>
+                    <li><strong>B+:</strong> 65–74</li>
+                    <li><strong>B:</strong> 60–64</li>
+                    <li><strong>C+:</strong> 55–59</li>
+                    <li><strong>C:</strong> 50–54</li>
+                    <li><strong>D:</strong> 0–49</li>
+                </ul>
+            </div>
   </section>
+</div>
+             
+      <footer>
+        <p>ICT251 Web Technologies Assignment - Quadratic Equation Solver & Grade Converter</p>
+    </footer>      
 
   <script>
     // Quadratic Solver
