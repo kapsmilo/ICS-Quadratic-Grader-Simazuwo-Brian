@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quadratic Solver & Grading System</title>
+  <style>
+    body { font-family: Arial; margin: 30px; background: #3636c6; }
+    h2 { color: #333; }
+    section { background: rgb(166, 62, 145); padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 5px gray; }
+    label { display: block; margin-top: 8px; }
+    input { padding: 5px; width: 80px; background-color: rgb(205, 199, 199);}
+    button:hover { text-decoration: none; background-color:rgb(37, 88, 240);}
+    button { margin-top: 10px; padding: 6px 12px;  }
+    .result { margin-top: 10px; font-weight: bold; color: blue; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+
+  <h1>Quadratic Solver & Grading System</h1>
+
+  <!-- Quadratic Solver -->
+  <section>
+    <h2>Quadratic Equation Solver</h2>
+    <label>a: <input type="number" id="a"></label>
+    <label>b: <input type="number" id="b"></label>
+    <label>c: <input type="number" id="c"></label>
+    <button onclick="solveQuadratic()">Solve</button>
+    <button onclick="clearQuadratic()">Reset</button>
+    <div id="quadResult" class="result"></div>
+  </section>
+
+  <!-- Grading System -->
+  <section>
+    <h2>Grading System</h2>
+    <label>Score (0–100): <input type="number" id="score"></label>
+    <button onclick="computeGrade()">Compute</button>
+    <button onclick="clearGrade()">Reset</button>
+    <div id="gradeResult" class="result"></div>
+  </section>
+
+  <script>
+    // Quadratic Solver
+    function solveQuadratic() {
+      let a = parseFloat(document.getElementById("a").value);
+      let b = parseFloat(document.getElementById("b").value);
+      let c = parseFloat(document.getElementById("c").value);
+      let result = document.getElementById("quadResult");
+
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        result.innerHTML = "<span class='error'>Please enter all values.</span>";
+        return;
+      }
+      if (a === 0) {
+        result.innerHTML = "<span class='error'>a cannot be 0.</span>";
+        return;
+      }
+
+      let D = b * b - 4 * a * c;
+      let message = `Discriminant (D) = ${D.toFixed(2)}<br>`;
+
+      if (D > 0) {
+        let x1 = (-b + Math.sqrt(D)) / (2 * a);
+        let x2 = (-b - Math.sqrt(D)) / (2 * a);
+        message += `Two distinct real roots: x₁ = ${x1.toFixed(2)}, x₂ = ${x2.toFixed(2)}`;
+      } else if (D === 0) {
+        let x = -b / (2 * a);
+        message += `One real repeated root: x = ${x.toFixed(2)}`;
+      } else {
+        let real = (-b / (2 * a)).toFixed(2);
+        let imag = (Math.sqrt(-D) / (2 * a)).toFixed(2);
+        message += `Two complex roots: X1= ${real},   X2= ${imag}`;
+      }
+
+      result.innerHTML = message;
+    }
+
+    function clearQuadratic() {
+      document.getElementById("a").value = "";
+      document.getElementById("b").value = "";
+      document.getElementById("c").value = "";
+      document.getElementById("quadResult").innerHTML = "";
+    }
+
+    // Grading System
+    function computeGrade() {
+      let score = parseInt(document.getElementById("score").value);
+      let result = document.getElementById("gradeResult");
+
+      if (isNaN(score) || score < 0 || score > 100) {
+        result.innerHTML = "<span class='error'>Enter a number between 0 and 100.</span>";
+        return;
+      }
+
+      let grade = "";
+      if (score >= 85) grade = "A+";
+      else if (score >= 75) grade = "A";
+      else if (score >= 65) grade = "B+";
+      else if (score >= 60) grade = "B";
+      else if (score >= 55) grade = "C+";
+      else if (score >= 50) grade = "C";
+      else grade = "D";
+
+      result.innerHTML = `Score ${score} → Grade ${grade}`;
+    }
+
+    function clearGrade() {
+      document.getElementById("score").value = "";
+      document.getElementById("gradeResult").innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
